@@ -1,0 +1,44 @@
+[checker]
+# How frequently to run the check
+interval = "10m"
+
+[checker.repositories]
+# Repos to ignore
+ignored   = [ "" ]
+# Repos to mark as "important". This is useful to e.g. send push
+# notification emails for releases of certain repos.
+important = [ "" ]
+
+[checker.github]
+# Your Github username
+user  = ""
+# Your Github access token. Only "public access" must be granted.
+# Generate a token here: https://github.com/settings/tokens
+token = ""
+
+[mail]
+# Whether to send emails notifications on new releases
+enabled  = false
+# Number of mail workers
+workers  = 1
+# Whether to accept untrusted certificates
+insecure = false
+
+# How to connect to the mail server
+host = "localhost"
+port = 25
+user = ""
+pswd = ""
+
+# Sender address
+from         = "from@example.com"
+# Recipient addresses
+to           = [ "to@example.com" ]
+# Recipient addresses for "important" releases, e.g. a Boxcar
+# email address: https://boxcar.io/
+important_to = [ "important-to@example.com" ]
+
+# Subject template
+subject = "New release of $fullName"
+# Body template
+body    = "New release of $url : $version"
