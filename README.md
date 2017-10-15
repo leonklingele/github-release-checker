@@ -15,6 +15,8 @@ make
 # Create a config file
 cp config.toml.in config.toml
 # .. and edit it at will
+# I recommend to not enable "mail" on the first run as it will
+# most likely spam your inbox.
 $EDITOR config.toml
 
 # Finally start the app
