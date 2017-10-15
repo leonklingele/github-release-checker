@@ -59,11 +59,11 @@ token = ".."
 
 [mail]
 # Whether to send emails notifications on new releases
-enabled  = false
+enabled  = true
 # Number of mail workers
 workers  = 5
 # Whether to accept untrusted certificates
-insecure = false
+insecure = true
 
 # How to connect to the mail server
 host = "localhost"
