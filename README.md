@@ -6,7 +6,7 @@ Get notified on new releases of your starred & watched repos.
 
 ```sh
 # Clone this repo
-git clone github.com/leonklingele/github-release-checker
+git clone https://github.com/leonklingele/github-release-checker
 # .. and cd into it
 cd github-release-checker
 
