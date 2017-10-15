@@ -58,7 +58,7 @@ user  = "leonklingele"
 token = ".."
 
 [mail]
-# Whether to send emails notifications on new releases
+# Whether to send email notifications on new releases
 enabled  = true
 # Number of mail workers
 workers  = 5
