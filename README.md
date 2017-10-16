@@ -1,5 +1,7 @@
 # Github Release checker
 
+[![Build Status](https://travis-ci.org/leonklingele/github-release-checker.svg?branch=master)](https://travis-ci.org/leonklingele/github-release-checker)
+
 Get notified on new releases of your starred & watched repos.
 
 ## Setup
