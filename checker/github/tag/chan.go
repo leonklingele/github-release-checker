@@ -26,7 +26,7 @@ func CloneChan(in Chan, l int) []Chan {
 	}
 
 	go func() {
-		// Popularize clones
+		// Populate clones
 		wgs := make([]sync.WaitGroup, l)
 		for t := range in {
 			for i, c := range outRW {
