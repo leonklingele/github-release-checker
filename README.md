@@ -20,7 +20,7 @@ make config
 $EDITOR $HOME/.github-release-checker/config.toml
 
 # Finally start the app
-./github-release-checker
+github-release-checker
 ```
 
 ## Example config
