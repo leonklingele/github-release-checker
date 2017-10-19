@@ -11,12 +11,12 @@ import (
 	"github.com/leonklingele/github-release-checker/checker/github/tag"
 	"github.com/leonklingele/github-release-checker/checker/handlers"
 	"github.com/leonklingele/github-release-checker/logging"
+	"github.com/leonklingele/github-release-checker/pathutil"
 	"github.com/leonklingele/github-release-checker/stringutil"
 	"github.com/pkg/errors"
 )
 
 const (
-	sqliteDBPath   = "./sqlite.db"
 	sqliteInitStmt = `
 		begin;
 		create table tags (
@@ -128,13 +128,17 @@ func initDB(db *sql.DB) error {
 }
 
 func New(c *Config) (*Checker, error) {
-	db, err := sql.Open("sqlite3", sqliteDBPath)
+	dbp, err := pathutil.ReplaceHome(c.DBConfig.Path)
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to replace home")
+	}
+	db, err := sql.Open("sqlite3", dbp)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to open database")
 	}
 	// defer db.Close() // TODO(leon): Do we even need to close?
 
-	if _, err := os.Stat(sqliteDBPath); os.IsNotExist(err) {
+	if _, err := os.Stat(dbp); os.IsNotExist(err) {
 		if err := initDB(db); err != nil {
 			return nil, errors.Wrap(err, "failed to init database")
 		}

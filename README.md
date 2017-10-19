@@ -7,19 +7,17 @@ Get notified on new releases of your starred & watched repos.
 ## Setup
 
 ```sh
-# Clone this repo
-git clone https://github.com/leonklingele/github-release-checker
+# go get this repo
+go get -u github.com/leonklingele/github-release-checker
 # .. and cd into it
-cd github-release-checker
+cd $GOPATH/src/github.com/leonklingele/github-release-checker
 
-# Build the app
-make
-# Create a config file
-cp config.toml.in config.toml
+# Install config file to $HOME/.github-release-checker/config.toml
+make config
 # .. and edit it at will
 # I recommend to not enable "mail" on the first run as it will
 # most likely spam your inbox.
-$EDITOR config.toml
+$EDITOR $HOME/.github-release-checker/config.toml
 
 # Finally start the app
 ./github-release-checker
@@ -33,6 +31,9 @@ My current configuration:
 [checker]
 # How frequently to run the check
 interval = "5m"
+
+[checker.db]
+path = "$HOME/.github-release-checker/sqlite.db"
 
 [checker.repositories]
 # Repos to ignore

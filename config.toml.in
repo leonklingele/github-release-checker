@@ -2,6 +2,9 @@
 # How frequently to run the check
 interval = "10m"
 
+[checker.db]
+path = "$HOME/.github-release-checker/sqlite.db"
+
 [checker.repositories]
 # Repos to ignore
 ignored   = [ "" ]

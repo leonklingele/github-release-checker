@@ -9,16 +9,18 @@ import (
 	mailHandler "github.com/leonklingele/github-release-checker/checker/handlers/mail"
 	"github.com/leonklingele/github-release-checker/config"
 	"github.com/leonklingele/github-release-checker/logging"
+	"github.com/leonklingele/github-release-checker/pathutil"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/pkg/errors"
 )
 
 const (
-	configFilePath = "./config.toml"
+	defaultConfigFilePath = "$HOME/.github-release-checker/config.toml"
 )
 
 var (
-	enableDebug = flag.Bool("debug", false, "whether to enable debug mode")
+	configFilePath = flag.String("config", defaultConfigFilePath, "optional, path where to find the config file")
+	enableDebug    = flag.Bool("debug", false, "whether to enable debug mode")
 )
 
 func main() {
@@ -34,8 +36,12 @@ func main() {
 }
 
 func boot() error {
+	cfp, err := annotateConfigFilePath(*configFilePath)
+	if err != nil {
+		return errors.Wrap(err, "failed to annotate config file path")
+	}
 	var conf config.Config
-	if _, err := toml.DecodeFile(configFilePath, &conf); err != nil {
+	if _, err := toml.DecodeFile(cfp, &conf); err != nil {
 		return errors.Wrap(err, "failed to load or parse config file")
 	}
 
@@ -51,4 +57,8 @@ func boot() error {
 		return errors.Wrap(err, "failed to create checker")
 	}
 	return c.Start()
+}
+
+func annotateConfigFilePath(p string) (string, error) {
+	return pathutil.ReplaceHome(p)
 }

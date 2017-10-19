@@ -9,8 +9,13 @@ import (
 type Config struct {
 	CheckInterval duration `toml:"interval"`
 
+	DBConfig           *DBConfig           `toml:"db"`
 	RepositoriesConfig *RepositoriesConfig `toml:"repositories"`
 	GithubConfig       *github.Config      `toml:"github"`
+}
+
+type DBConfig struct {
+	Path string `toml:"path"`
 }
 
 type RepositoriesConfig struct {
