@@ -20,7 +20,7 @@ const (
 
 var (
 	configFilePath = flag.String("config", defaultConfigFilePath, "optional, path where to find the config file")
-	enableDebug    = flag.Bool("debug", false, "whether to enable debug mode")
+	enableDebug    = flag.Bool("debug", false, "optional, whether to enable debug mode")
 )
 
 func main() {
