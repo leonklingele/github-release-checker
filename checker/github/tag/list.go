@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/leonklingele/github-release-checker/checker/github/repository"
 	"github.com/leonklingele/github-release-checker/logging"
@@ -17,9 +18,11 @@ const (
 )
 
 func newListWorker(repoChan repository.Chan, tagChan chanW) {
+	ts := time.Now().Unix()
 	for repo := range repoChan {
 		htmlURL := repo.GetHTMLURL()
-		tagsURL := htmlURL + "/tags.atom"
+		atom := "tags.atom"
+		tagsURL := fmt.Sprintf("%s/%s?t=%d", htmlURL, atom, ts)
 		fp := gofeed.NewParser()
 		feed, err := fp.ParseURL(tagsURL)
 		if err != nil {
