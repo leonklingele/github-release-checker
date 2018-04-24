@@ -32,7 +32,7 @@ func CleanupChan(in Chan) Chan {
 		}
 		return !repo.IsIgnored
 	})
-	checked := make(map[int]struct{})
+	checked := make(map[int64]struct{})
 	dedup := MakeChanFilter(func(repo *Repository) bool {
 		// No need to lock the map, we're not checking concurrently
 		if _, ok := checked[repo.GetID()]; ok {
