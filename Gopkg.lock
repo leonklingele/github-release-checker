@@ -32,6 +32,28 @@
   revision = "53e6ce116135b80d037921a7fdd5138cf32d7a8a"
 
 [[projects]]
+  name = "github.com/klauspost/compress"
+  packages = [
+    "flate",
+    "gzip",
+    "zlib"
+  ]
+  revision = "6c8db69c4b49dd4df1fff66996cf556176d0b9bf"
+  version = "v1.2.1"
+
+[[projects]]
+  name = "github.com/klauspost/cpuid"
+  packages = ["."]
+  revision = "ae7887de9fa5d2db4eaa8174a7eff2c1ac00f2da"
+  version = "v1.1"
+
+[[projects]]
+  name = "github.com/klauspost/crc32"
+  packages = ["."]
+  revision = "cb6bfca970f6908083f26f39a79009d608efd5cd"
+  version = "v1.1"
+
+[[projects]]
   name = "github.com/mattn/go-sqlite3"
   packages = ["."]
   revision = "6c771bb9887719704b210e87e934f08be014bdb1"
@@ -60,6 +82,15 @@
   packages = ["."]
   revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
   version = "v0.8.0"
+
+[[projects]]
+  name = "github.com/valyala/fasthttp"
+  packages = [
+    ".",
+    "fasthttputil"
+  ]
+  revision = "d42167fd04f636e20b005e9934159e95454233c7"
+  version = "v20160617"
 
 [[projects]]
   branch = "master"
@@ -110,6 +141,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "f1299e7f0c3f25d7ea41c134e6f7fd7554098ce38373b8833a9301477d209054"
+  inputs-digest = "5fd32bd097f6b38e358a9f0f0a41749d38a568d1fc02b6a16746bb5222b639a3"
   solver-name = "gps-cdcl"
   solver-version = 1
