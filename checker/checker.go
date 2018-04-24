@@ -2,7 +2,6 @@ package checker
 
 import (
 	"database/sql"
-	"fmt"
 	"os"
 	"time"
 
@@ -75,7 +74,7 @@ func (c *Checker) Start() error {
 			version := tag.Version
 			if _, err := stmt.Exec(name, version); err != nil {
 				// TODO(leon): Should only use .Debug if is unique constraint error
-				logging.Debug(errors.Wrap(err, fmt.Sprintf("failed to insert row: (%s, %s)", name, version)))
+				logging.Debug(errors.Wrapf(err, "failed to insert row: (%s, %s)", name, version))
 				return false
 			}
 			return true

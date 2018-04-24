@@ -1,7 +1,6 @@
 package repository
 
 import (
-	"fmt"
 	"sync"
 
 	"github.com/google/go-github/github"
@@ -39,7 +38,7 @@ func List(activity *github.ActivityService) Chan {
 			go func(name string, check checkFunc) {
 				defer wg.Done()
 				if err := check(activity, onlyWritable(repoChan), wg); err != nil {
-					logging.Error(errors.Wrap(err, fmt.Sprintf("failed to run '%s' check", name)))
+					logging.Error(errors.Wrapf(err, "failed to run '%s' check", name))
 				}
 			}(name, check)
 		}

@@ -26,7 +26,7 @@ func newListWorker(repoChan repository.Chan, tagChan chanW) {
 		fp := gofeed.NewParser()
 		feed, err := fp.ParseURL(tagsURL)
 		if err != nil {
-			logging.Error(errors.Wrap(err, fmt.Sprintf("failed to parse URL %s", tagsURL)))
+			logging.Error(errors.Wrapf(err, "failed to parse URL %s", tagsURL))
 			continue
 		}
 		for _, item := range feed.Items {

@@ -2,7 +2,6 @@ package repository
 
 import (
 	"context"
-	"fmt"
 	"sync"
 
 	"github.com/google/go-github/github"
@@ -29,7 +28,7 @@ func listStarredAll(
 			}()
 			logging.Debug("start getting starred repos, page", page)
 			if _, err := listStarred(activity, page, repoChan); err != nil {
-				logging.Error(errors.Wrap(err, fmt.Sprintf("failed to get starred repos, page %d", page)))
+				logging.Error(errors.Wrapf(err, "failed to get starred repos, page %d", page))
 			}
 		}(page)
 	}
