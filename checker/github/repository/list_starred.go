@@ -47,7 +47,7 @@ func listStarred(
 		},
 	}
 	// TODO(leon): Pass in context
-	starred, res, err := activity.ListStarred(context.Background(), "", opt)
+	starred, res, err := activity.ListStarred(context.TODO(), "", opt)
 	if err != nil {
 		return nil, err
 	}

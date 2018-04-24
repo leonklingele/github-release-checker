@@ -45,7 +45,7 @@ func listWatched(
 		PerPage: perPage,
 	}
 	// TODO(leon): Pass in context
-	watched, res, err := activity.ListWatched(context.Background(), "", opt)
+	watched, res, err := activity.ListWatched(context.TODO(), "", opt)
 	if err != nil {
 		return nil, err
 	}
