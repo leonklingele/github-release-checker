@@ -17,25 +17,22 @@ const (
 	defaultConfigFilePath = "$HOME/.github-release-checker/config.toml"
 )
 
-var (
-	configFilePath = flag.String("config", defaultConfigFilePath, "optional, path where to find the config file")
-	enableDebug    = flag.Bool("debug", false, "optional, whether to enable debug mode")
-)
-
 func main() {
+	configFilePath := flag.String("config", defaultConfigFilePath, "optional, path where to find the config file")
+	enableDebug := flag.Bool("debug", false, "optional, whether to enable debug mode")
 	flag.Parse()
 
 	if *enableDebug {
 		logging.SetDebug()
 	}
 
-	if err := boot(); err != nil {
+	if err := boot(*configFilePath); err != nil {
 		logging.Fatal(err)
 	}
 }
 
-func boot() error {
-	cfp, err := annotateConfigFilePath(*configFilePath)
+func boot(configFilePath string) error {
+	cfp, err := annotateConfigFilePath(configFilePath)
 	if err != nil {
 		return errors.Wrap(err, "failed to annotate config file path")
 	}
