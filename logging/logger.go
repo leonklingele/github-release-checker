@@ -5,7 +5,7 @@ import (
 	builtinlog "log"
 )
 
-var (
+const (
 	prefixDebug = "debug"
 	prefixInfo  = "info"
 	prefixError = "error"
