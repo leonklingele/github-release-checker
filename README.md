@@ -31,6 +31,8 @@ My current configuration:
 [checker]
 # How frequently to run the check
 interval = "5m"
+# Number of scraping workers to spawn
+workers  = 10
 
 [checker.db]
 path = "$HOME/.github-release-checker/sqlite.db"

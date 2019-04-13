@@ -12,11 +12,6 @@ import (
 	"github.com/pkg/errors"
 )
 
-const (
-	// TODO(leon): Make this configurable
-	maxWorkers = 100
-)
-
 func newListWorker(repoChan repository.Chan, tagChan chanW) {
 	ts := time.Now().Unix()
 	for repo := range repoChan {
@@ -37,7 +32,7 @@ func newListWorker(repoChan repository.Chan, tagChan chanW) {
 	}
 }
 
-func List(repoChan repository.Chan) Chan {
+func List(repoChan repository.Chan, maxWorkers int) Chan {
 	tagChan := make(chanRW)
 
 	go func() {

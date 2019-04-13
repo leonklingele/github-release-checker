@@ -8,6 +8,7 @@ import (
 
 type Config struct {
 	CheckInterval duration `toml:"interval"`
+	Workers       int      `toml:"workers"`
 
 	DBConfig           *DBConfig           `toml:"db"`
 	RepositoriesConfig *RepositoriesConfig `toml:"repositories"`

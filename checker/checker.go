@@ -89,6 +89,7 @@ func (c *Checker) Start() error {
 							listRepos(activity),
 						),
 					),
+					c.config.Workers,
 				),
 			)
 		if err := handlers.Handle(tagChan, done); err != nil {

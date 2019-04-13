@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 
-	"github.com/BurntSushi/toml"
 	"github.com/leonklingele/github-release-checker/checker"
 	logHandler "github.com/leonklingele/github-release-checker/checker/handlers/log"
 	mailHandler "github.com/leonklingele/github-release-checker/checker/handlers/mail"
@@ -40,9 +39,10 @@ func boot() error {
 	if err != nil {
 		return errors.Wrap(err, "failed to annotate config file path")
 	}
-	var conf config.Config
-	if _, err := toml.DecodeFile(cfp, &conf); err != nil {
-		return errors.Wrap(err, "failed to load or parse config file")
+
+	conf, err := config.Load(cfp)
+	if err != nil {
+		return err
 	}
 
 	if err := logHandler.Register(); err != nil {
