@@ -14,6 +14,7 @@ func Register(c *Config) error {
 	if !c.Enabled {
 		return nil
 	}
+	//nolint:gosec
 	c.TLSConfig = &tls.Config{InsecureSkipVerify: c.Insecure}
 	return handlers.Register(handlerName, func() (handlers.Handler, error) {
 		return &mailHandler{config: c}, nil
